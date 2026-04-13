@@ -1,0 +1,97 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+._*
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files - NEVER commit
+.env
+.env.*
+.env.bak
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Backups and archives
+archive/
+backup-*/
+backups/
+blog-review/
+gsc-export/
+mstreetmusic-next/
+.next.bak-*/
+*.bak
+*.bak.*
+
+# Database - SQLite files contain user data
+prisma/dev.db
+prisma/dev.db-journal
+prisma/prisma/dev.db
+prisma/prisma/dev.db-journal
+*.db
+*.db-journal
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+
+# Local progress tracking (but keep plans/blog-content-plan.md for automation)
+plans/*-progress.md
+
+# Local working docs and reports
+SEO AUDIT via CHAT/
+memory/
+lighthouse-*.report
+lighthouse-*.html
+lighthouse-*.json
+*.tar.gz
+
+# Legacy pre-migration files
+deploy/
+originals/
+
+# Passenger restart trigger (runtime)
+tmp/
+
+# Static site (deployed separately via Apache, not Next.js)
+public_html/
+
+# Claude internal
+.superpowers/
+.claude/
+
+# Backup files with date suffixes
+*.bak-*
+
+# PDFs and large binary distributables (deployed separately)
+mixing-books/
+*.pdf

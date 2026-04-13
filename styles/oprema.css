@@ -1,0 +1,844 @@
+/* M Street Music — Equipment Pages Styles */
+/* Only equipment-specific styles. Shared nav/footer/reveal/btn styles are in homepage.css */
+
+/* ============================
+   Page Wrapper & Base
+   ============================ */
+.oprema-page {
+    font-family: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    line-height: 1.6;
+    background: var(--white);
+}
+
+.oprema-page *,
+.oprema-page *::before,
+.oprema-page *::after {
+    box-sizing: border-box;
+}
+
+.oprema-listing-page {
+    font-family: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    line-height: 1.6;
+    background: var(--white);
+}
+
+.oprema-listing-page *,
+.oprema-listing-page *::before,
+.oprema-listing-page *::after {
+    box-sizing: border-box;
+}
+
+/* ============================
+   Shared Inner Container
+   ============================ */
+.oprema-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ============================
+   Section Titles
+   ============================ */
+.oprema-section-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--gray-900);
+    margin: 0 0 48px;
+    text-align: center;
+}
+
+/* ============================
+   Hero Section (Detail Page)
+   ============================ */
+.oprema-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+.oprema-hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Breadcrumbs */
+.oprema-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.oprema-breadcrumbs a {
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.oprema-breadcrumbs a:hover {
+    color: var(--red-accent);
+}
+
+.oprema-breadcrumbs .separator {
+    color: var(--gray-400);
+    font-size: 16px;
+    user-select: none;
+}
+
+.oprema-breadcrumbs .current {
+    color: var(--gray-900);
+    font-weight: 500;
+}
+
+/* Hero Title */
+.oprema-hero-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 3px;
+    color: var(--gray-900);
+    margin: 0 0 12px;
+}
+
+.oprema-hero-brand {
+    font-size: 16px;
+    color: var(--red-accent);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0 0 24px;
+}
+
+.oprema-hero-description {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* Hero Image */
+.oprema-hero-image {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.oprema-hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ============================
+   Uloga u studiju + Signal Chain
+   ============================ */
+.oprema-role {
+    padding: 80px 0;
+    background: var(--gray-50, #f8f9fa);
+}
+
+.oprema-role-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--gray-700);
+    max-width: 800px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+/* Signal Chain Visualization */
+.oprema-signal-chain {
+    margin-top: 48px;
+}
+
+.oprema-signal-chain-label {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--gray-500);
+    margin: 0 0 24px;
+}
+
+.oprema-signal-chain-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: nowrap;
+}
+
+.oprema-signal-chain-step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.oprema-signal-chain-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border: 2px solid var(--gray-200, #e5e7eb);
+    border-radius: 12px;
+    background: var(--white);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-width: 0;
+    flex: 1;
+    max-width: 200px;
+}
+
+.oprema-signal-chain-item:hover {
+    border-color: var(--red-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.oprema-signal-chain-item.active {
+    border-color: var(--red-accent);
+    background: var(--red-accent);
+}
+
+.oprema-signal-chain-item.active .oprema-signal-chain-number {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.oprema-signal-chain-item.active .oprema-signal-chain-name {
+    color: var(--white);
+}
+
+.oprema-signal-chain-number {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: 14px;
+    color: var(--gray-400);
+    letter-spacing: 1px;
+}
+
+.oprema-signal-chain-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-900);
+    text-align: center;
+    line-height: 1.3;
+}
+
+.oprema-signal-chain-arrow {
+    font-size: 18px;
+    color: var(--gray-400);
+    padding: 0 8px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* ============================
+   Specifikacije
+   ============================ */
+.oprema-specs {
+    padding: 80px 0;
+}
+
+.oprema-specs-table {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.oprema-specs-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gray-100, #f3f4f6);
+}
+
+.oprema-specs-row:nth-child(odd) {
+    background: var(--gray-50, #f8f9fa);
+    border-radius: 8px;
+}
+
+.oprema-specs-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-700);
+    flex-shrink: 0;
+    margin-right: 24px;
+}
+
+.oprema-specs-value {
+    font-size: 15px;
+    color: var(--gray-600);
+    text-align: right;
+}
+
+/* ============================
+   FAQ
+   ============================ */
+.oprema-faq {
+    padding: 80px 0;
+    background: var(--gray-50, #f8f9fa);
+}
+
+.oprema-faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.oprema-faq-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.oprema-faq-question {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+.oprema-faq-answer {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* ============================
+   Related Gear
+   ============================ */
+.oprema-related {
+    padding: 80px 0;
+}
+
+.oprema-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.oprema-related-card {
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--gray-100, #f3f4f6);
+    transition: all 0.25s ease;
+    display: block;
+}
+
+.oprema-related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: var(--gray-200, #e5e7eb);
+}
+
+.oprema-related-card-image {
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.oprema-related-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.oprema-related-card:hover .oprema-related-img {
+    transform: scale(1.03);
+}
+
+.oprema-related-card-body {
+    padding: 20px;
+}
+
+.oprema-related-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0 0 4px;
+}
+
+.oprema-related-card-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin: 0;
+}
+
+/* ============================
+   Cross-links Section
+   ============================ */
+.oprema-crosslinks {
+    padding: 60px 0;
+    background: var(--white);
+}
+
+.oprema-crosslinks-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 48px;
+}
+
+.oprema-crosslinks-group {
+    flex: 1;
+}
+
+.oprema-crosslinks-group h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+}
+
+.oprema-crosslinks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.oprema-crosslinks-list a {
+    font-size: 15px;
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.oprema-crosslinks-list a:hover {
+    color: var(--red-accent);
+}
+
+.oprema-crosslinks-list a::before {
+    content: '\203A';
+    margin-right: 8px;
+    color: var(--red-accent);
+}
+
+/* ============================
+   CTA (Detail Page)
+   ============================ */
+.oprema-cta {
+    padding: 80px 0;
+    background: var(--gray-900);
+    text-align: center;
+}
+
+.oprema-cta-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin: 0 0 16px;
+}
+
+.oprema-cta-text {
+    font-size: 18px;
+    color: var(--gray-400);
+    margin: 0 0 32px;
+}
+
+.oprema-cta-button {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--red-accent);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+}
+
+.oprema-cta-button:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+/* ============================
+   LISTING PAGE
+   ============================ */
+
+/* Listing Hero */
+.oprema-listing-hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    text-align: center;
+}
+
+.oprema-listing-hero h1 {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--gray-900);
+    margin: 0 0 20px;
+    line-height: 0.95;
+}
+
+.oprema-listing-hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* Listing Signal Chain */
+.oprema-listing-chain {
+    padding: 40px 24px 60px;
+    background: var(--gray-50, #f8f9fa);
+}
+
+.oprema-listing-chain-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--gray-900);
+    margin: 0 0 32px;
+    text-align: center;
+}
+
+/* Listing Content & Grid */
+.oprema-listing-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
+.oprema-listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.oprema-listing-card {
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--gray-100, #f3f4f6);
+    transition: all 0.25s ease;
+    display: block;
+}
+
+.oprema-listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: var(--gray-200, #e5e7eb);
+}
+
+.oprema-listing-card-image {
+    overflow: hidden;
+    aspect-ratio: 3/2;
+}
+
+.oprema-listing-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.oprema-listing-card:hover .oprema-listing-card-img {
+    transform: scale(1.03);
+}
+
+.oprema-listing-card-body {
+    padding: 24px;
+}
+
+.oprema-listing-card-brand {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--red-accent);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.oprema-listing-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.oprema-listing-card-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-500);
+    margin: 0 0 16px;
+}
+
+.oprema-listing-card-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red-accent);
+    display: inline-block;
+}
+
+/* Listing CTA */
+.oprema-listing-cta {
+    padding: 80px 24px;
+    background: var(--gray-900);
+    text-align: center;
+}
+
+.oprema-listing-cta h2 {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin: 0 0 16px;
+}
+
+.oprema-listing-cta p {
+    font-size: 18px;
+    color: var(--gray-400);
+    margin: 0 0 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.oprema-listing-cta-btn {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--red-accent);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+}
+
+.oprema-listing-cta-btn:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+}
+
+/* ============================
+   Footer fix — restore footer grid for oprema pages
+   ============================ */
+.oprema-page .footer {
+    padding: 60px 24px 40px;
+}
+
+.oprema-page .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.oprema-page .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.oprema-page .footer-links {
+    list-style: none;
+}
+
+.oprema-page .footer-links li {
+    margin-bottom: 12px;
+}
+
+.oprema-page .footer-bottom {
+    padding-top: 32px;
+    text-align: center;
+}
+
+.oprema-listing-page .footer {
+    padding: 60px 24px 40px;
+}
+
+.oprema-listing-page .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.oprema-listing-page .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.oprema-listing-page .footer-links {
+    list-style: none;
+}
+
+.oprema-listing-page .footer-links li {
+    margin-bottom: 12px;
+}
+
+.oprema-listing-page .footer-bottom {
+    padding-top: 32px;
+    text-align: center;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1024px) {
+    .oprema-hero {
+        gap: 40px;
+    }
+
+    .oprema-signal-chain-item {
+        padding: 10px 12px;
+    }
+
+    .oprema-signal-chain-name {
+        font-size: 11px;
+    }
+
+    .oprema-signal-chain-arrow {
+        padding: 0 6px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .oprema-crosslinks {
+        padding: 40px 0;
+    }
+
+    .oprema-crosslinks-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .oprema-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 20px 16px 48px;
+    }
+
+    .oprema-hero-image {
+        order: -1;
+    }
+
+    .oprema-hero-title {
+        font-size: clamp(36px, 10vw, 52px);
+    }
+
+    .oprema-hero-description {
+        font-size: 16px;
+    }
+
+    .oprema-section-inner {
+        padding: 0 16px;
+    }
+
+    .oprema-role,
+    .oprema-specs,
+    .oprema-faq,
+    .oprema-related {
+        padding: 48px 0;
+    }
+
+    .oprema-section-title {
+        margin-bottom: 32px;
+    }
+
+    /* Signal chain vertical on mobile */
+    .oprema-signal-chain-flow {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .oprema-signal-chain-step {
+        flex-direction: column;
+    }
+
+    .oprema-signal-chain-item {
+        flex-direction: row;
+        min-width: 240px;
+        gap: 12px;
+        padding: 14px 20px;
+    }
+
+    .oprema-signal-chain-arrow {
+        transform: rotate(90deg);
+        padding: 4px 0;
+    }
+
+    .oprema-specs-row {
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px 16px;
+    }
+
+    .oprema-specs-value {
+        text-align: left;
+    }
+
+    .oprema-faq-item {
+        padding: 24px;
+    }
+
+    .oprema-related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Listing responsive */
+    .oprema-listing-hero {
+        padding: 20px 16px 40px;
+    }
+
+    .oprema-listing-content {
+        padding: 40px 16px;
+    }
+
+    .oprema-listing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oprema-listing-cta {
+        padding: 48px 16px;
+    }
+
+    /* Footer responsive */
+    .oprema-page .footer-top,
+    .oprema-listing-page .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}

@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Homepage-specific styles will be in styles/homepage.css */
+/* This file is for Tailwind (admin panel, blog) + global resets */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

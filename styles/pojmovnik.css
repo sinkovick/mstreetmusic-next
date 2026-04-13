@@ -1,0 +1,1009 @@
+/* M Street Music — Pojmovnik (Glossary) Styles */
+/* Only pojmovnik-specific styles. Shared nav/footer/reveal/btn styles are in homepage.css */
+
+/* ============================
+   Detail Page — Wrapper & Base
+   ============================ */
+.pojmovnik-page {
+    font-family: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    line-height: 1.6;
+    background: var(--white);
+}
+
+.pojmovnik-page *,
+.pojmovnik-page *::before,
+.pojmovnik-page *::after {
+    box-sizing: border-box;
+}
+
+/* ============================
+   Shared Inner Container
+   ============================ */
+.pojmovnik-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ============================
+   Section Titles
+   ============================ */
+.pojmovnik-section-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--gray-900);
+    margin: 0 0 48px;
+    text-align: center;
+}
+
+/* ============================
+   Hero Section (Detail)
+   ============================ */
+.pojmovnik-hero {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+/* Breadcrumbs */
+.pojmovnik-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.pojmovnik-breadcrumbs a {
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pojmovnik-breadcrumbs a:hover {
+    color: var(--red-accent);
+}
+
+.pojmovnik-breadcrumbs .separator {
+    color: var(--gray-400);
+    font-size: 16px;
+    user-select: none;
+}
+
+.pojmovnik-breadcrumbs .current {
+    color: var(--gray-900);
+    font-weight: 500;
+}
+
+/* Hero Title */
+.pojmovnik-hero-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 3px;
+    color: var(--gray-900);
+    margin: 0 0 16px;
+}
+
+/* English equivalent + category badge */
+.pojmovnik-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.pojmovnik-english {
+    font-size: 16px;
+    color: var(--gray-500);
+    font-style: italic;
+}
+
+.pojmovnik-category-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--red-accent);
+    border: 1px solid var(--red-accent);
+    border-radius: 100px;
+}
+
+/* Definition */
+.pojmovnik-definition {
+    font-size: 18px;
+    color: var(--gray-700);
+    line-height: 1.8;
+    margin: 0;
+    border-left: 3px solid var(--red-accent);
+    padding-left: 20px;
+}
+
+/* ============================
+   Explanation Section
+   ============================ */
+.pojmovnik-explanation {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.pojmovnik-explanation-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pojmovnik-explanation-content p {
+    font-size: 17px;
+    color: var(--gray-600);
+    line-height: 1.85;
+    margin: 0 0 24px;
+}
+
+.pojmovnik-explanation-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================
+   Studio Context Section
+   ============================ */
+.pojmovnik-studio {
+    padding: 80px 0;
+    background: var(--gray-50);
+}
+
+.pojmovnik-studio-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--gray-900);
+    margin: 0 0 32px;
+    text-align: center;
+}
+
+.pojmovnik-studio-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pojmovnik-studio-content p {
+    font-size: 17px;
+    color: var(--gray-600);
+    line-height: 1.85;
+    margin: 0;
+}
+
+/* ============================
+   FAQ Section
+   ============================ */
+.pojmovnik-faq {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.pojmovnik-faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.pojmovnik-faq-item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.pojmovnik-faq-item:first-child {
+    padding-top: 0;
+}
+
+.pojmovnik-faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.pojmovnik-faq-question {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+.pojmovnik-faq-answer {
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ============================
+   Related Terms Section
+   ============================ */
+.pojmovnik-related {
+    padding: 100px 0;
+    background: var(--gray-50);
+}
+
+.pojmovnik-related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.pojmovnik-related-card {
+    display: block;
+    background: var(--white);
+    padding: 32px 24px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.pojmovnik-related-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--gray-200);
+}
+
+.pojmovnik-related-card-term {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 4px;
+    transition: color 0.2s ease;
+}
+
+.pojmovnik-related-card:hover .pojmovnik-related-card-term {
+    color: var(--red-accent);
+}
+
+.pojmovnik-related-card-english {
+    font-size: 13px;
+    color: var(--gray-400);
+    font-style: italic;
+    margin: 0 0 12px;
+}
+
+.pojmovnik-related-card-def {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.7;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ============================
+   Cross-Links Section (Services + Gear)
+   ============================ */
+.pojmovnik-crosslinks {
+    padding: 60px 0;
+    background: var(--white);
+}
+
+.pojmovnik-crosslinks-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 48px;
+}
+
+.pojmovnik-crosslinks-group {
+    flex: 1;
+}
+
+.pojmovnik-crosslinks-group h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-400);
+    margin: 0 0 16px;
+}
+
+.pojmovnik-crosslinks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pojmovnik-crosslinks-list a {
+    font-size: 15px;
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pojmovnik-crosslinks-list a:hover {
+    color: var(--red-accent);
+}
+
+.pojmovnik-crosslinks-list a::before {
+    content: '\203A';
+    margin-right: 8px;
+    color: var(--red-accent);
+}
+
+/* ============================
+   CTA Section
+   ============================ */
+.pojmovnik-cta {
+    padding: 100px 0;
+    background: var(--dark-bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pojmovnik-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(153, 27, 27, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.pojmovnik-cta .pojmovnik-section-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.pojmovnik-cta-title {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 400;
+    color: var(--white);
+    margin: 0 0 16px;
+    letter-spacing: 2px;
+}
+
+.pojmovnik-cta-text {
+    font-size: 18px;
+    color: #C7D2E0;
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 40px;
+}
+
+.pojmovnik-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 48px;
+    background: var(--red-accent);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.pojmovnik-cta-button:hover {
+    background: var(--red-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.25);
+}
+
+/* ============================
+   Footer fix — restore footer styles inside pojmovnik pages
+   ============================ */
+.pojmovnik-page .footer {
+    padding: 60px 24px 40px;
+}
+
+.pojmovnik-page .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pojmovnik-page .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.pojmovnik-page .footer-links {
+    list-style: none;
+}
+
+.pojmovnik-page .footer-links li {
+    margin-bottom: 12px;
+}
+
+.pojmovnik-page .footer-bottom {
+    padding-top: 32px;
+    text-align: center;
+}
+
+/* ============================
+   Listing Page
+   ============================ */
+.pojmovnik-listing-page {
+    font-family: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    line-height: 1.6;
+    background: var(--white);
+}
+
+.pojmovnik-listing-page *,
+.pojmovnik-listing-page *::before,
+.pojmovnik-listing-page *::after {
+    box-sizing: border-box;
+}
+
+/* Listing Hero */
+.pojmovnik-listing-hero {
+    text-align: center;
+    padding: 40px 24px 48px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pojmovnik-listing-hero h1 {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(48px, 8vw, 72px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 3px;
+    color: var(--gray-900);
+    margin: 0 0 20px;
+}
+
+.pojmovnik-listing-hero p {
+    font-size: 18px;
+    color: var(--gray-500);
+    line-height: 1.8;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Alphabet Navigation */
+.pojmovnik-alphabet-nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 24px 32px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pojmovnik-alphabet-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid var(--gray-200);
+}
+
+.pojmovnik-alphabet-link:hover {
+    color: var(--red-accent);
+    border-color: var(--red-accent);
+    background: rgba(153, 27, 27, 0.04);
+}
+
+.pojmovnik-alphabet-link--disabled {
+    color: var(--gray-300);
+    border-color: transparent;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Search Bar */
+.pojmovnik-search {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 24px 24px;
+}
+
+.pojmovnik-search-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.2s ease;
+}
+
+.pojmovnik-search-inner:focus-within {
+    border-color: var(--red-accent);
+}
+
+.pojmovnik-search-icon {
+    color: var(--gray-400);
+    flex-shrink: 0;
+}
+
+.pojmovnik-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--gray-900);
+    outline: none;
+}
+
+.pojmovnik-search-input::placeholder {
+    color: var(--gray-400);
+}
+
+.pojmovnik-search-clear {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.pojmovnik-search-clear:hover {
+    color: var(--gray-700);
+}
+
+/* Filter Tabs */
+.pojmovnik-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 24px 24px;
+    flex-wrap: wrap;
+}
+
+.pojmovnik-filter-tab {
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-500);
+    background: transparent;
+    border: 1px solid var(--gray-200);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.pojmovnik-filter-tab:hover {
+    color: var(--red-accent);
+    border-color: var(--red-accent);
+}
+
+.pojmovnik-filter-tab--active {
+    background: var(--red-accent);
+    color: var(--white);
+    border-color: var(--red-accent);
+}
+
+.pojmovnik-filter-tab--active:hover {
+    background: var(--red-hover);
+    color: var(--white);
+    border-color: var(--red-hover);
+}
+
+/* Letter Groups */
+.pojmovnik-listing-content {
+    padding: 0 24px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pojmovnik-letter-group {
+    padding: 40px 0 0;
+    scroll-margin-top: 160px;
+}
+
+.pojmovnik-letter-heading {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--red-accent);
+    margin: 0 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gray-100);
+}
+
+/* Listing Card Grid */
+.pojmovnik-listing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Listing Card */
+.pojmovnik-listing-card {
+    display: block;
+    background: var(--gray-50);
+    padding: 32px 28px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+/* Cards always on gray-50 inside letter groups */
+
+.pojmovnik-listing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: var(--gray-200);
+}
+
+.pojmovnik-listing-card-term {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 4px;
+    transition: color 0.2s ease;
+}
+
+.pojmovnik-listing-card:hover .pojmovnik-listing-card-term {
+    color: var(--red-accent);
+}
+
+.pojmovnik-listing-card-english {
+    font-size: 13px;
+    color: var(--gray-400);
+    font-style: italic;
+    margin: 0 0 12px;
+}
+
+.pojmovnik-listing-card-def {
+    font-size: 14px;
+    color: var(--gray-500);
+    line-height: 1.7;
+    margin: 0 0 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pojmovnik-listing-card-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--red-accent);
+}
+
+/* Listing CTA */
+.pojmovnik-listing-cta {
+    padding: 100px 24px;
+    background: var(--dark-bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pojmovnik-listing-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(153, 27, 27, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.pojmovnik-listing-cta h2 {
+    font-family: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 400;
+    color: var(--white);
+    margin: 0 0 16px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.pojmovnik-listing-cta p {
+    font-size: 18px;
+    color: #C7D2E0;
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.pojmovnik-listing-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 48px;
+    background: var(--red-accent);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.pojmovnik-listing-cta-btn:hover {
+    background: var(--red-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.25);
+}
+
+/* Listing Footer Fix */
+.pojmovnik-listing-page .footer {
+    padding: 60px 24px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pojmovnik-listing-page .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pojmovnik-listing-page .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+.pojmovnik-listing-page .footer-links {
+    list-style: none;
+}
+
+.pojmovnik-listing-page .footer-links li {
+    margin-bottom: 12px;
+}
+
+.pojmovnik-listing-page .footer-bottom {
+    padding-top: 32px;
+    text-align: center;
+}
+
+/* ============================
+   Reduced Motion
+   ============================ */
+@media (prefers-reduced-motion: reduce) {
+    .pojmovnik-related-card,
+    .pojmovnik-listing-card,
+    .pojmovnik-cta-button,
+    .pojmovnik-listing-cta-btn {
+        transition: none !important;
+    }
+
+    .pojmovnik-related-card:hover,
+    .pojmovnik-listing-card:hover {
+        transform: none !important;
+    }
+}
+
+/* ============================
+   Responsive — Tablet (1024px)
+   ============================ */
+@media (max-width: 1024px) {
+    /* Related terms: 2 columns */
+    .pojmovnik-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Listing: 2 columns */
+    .pojmovnik-listing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Cross-links: stack */
+    .pojmovnik-crosslinks-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    /* Footer responsive */
+    .pojmovnik-page .footer-top,
+    .pojmovnik-listing-page .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+/* ============================
+   Responsive — Mobile (768px)
+   ============================ */
+@media (max-width: 768px) {
+    /* Detail sections: less padding */
+    .pojmovnik-explanation,
+    .pojmovnik-studio,
+    .pojmovnik-faq,
+    .pojmovnik-related,
+    .pojmovnik-cta {
+        padding: 60px 0;
+    }
+
+    .pojmovnik-crosslinks {
+        padding: 40px 0;
+    }
+
+    /* Hero adjustments */
+    .pojmovnik-hero {
+        padding: 24px 20px 40px;
+    }
+
+    .pojmovnik-hero-title {
+        font-size: 42px;
+    }
+
+    .pojmovnik-definition {
+        font-size: 16px;
+    }
+
+    /* Section titles */
+    .pojmovnik-section-title {
+        font-size: 32px;
+        margin-bottom: 36px;
+    }
+
+    .pojmovnik-studio-title {
+        font-size: 28px;
+    }
+
+    /* Inner container padding */
+    .pojmovnik-section-inner {
+        padding: 0 20px;
+    }
+
+    /* Explanation */
+    .pojmovnik-explanation-content p {
+        font-size: 16px;
+    }
+
+    .pojmovnik-studio-content p {
+        font-size: 16px;
+    }
+
+    /* FAQ */
+    .pojmovnik-faq-question {
+        font-size: 16px;
+    }
+
+    .pojmovnik-faq-answer {
+        font-size: 14px;
+    }
+
+    .pojmovnik-faq-item {
+        padding: 24px 0;
+    }
+
+    /* Related: single column */
+    .pojmovnik-related-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* CTA */
+    .pojmovnik-cta-title {
+        font-size: 40px;
+    }
+
+    .pojmovnik-cta-text {
+        font-size: 16px;
+    }
+
+    .pojmovnik-cta-button {
+        width: 100%;
+        padding: 16px 32px;
+    }
+
+    /* Listing */
+    .pojmovnik-listing-hero {
+        padding: 24px 20px 32px;
+    }
+
+    .pojmovnik-listing-hero h1 {
+        font-size: 42px;
+    }
+
+    .pojmovnik-listing-hero p {
+        font-size: 16px;
+    }
+
+    .pojmovnik-alphabet-nav {
+        gap: 4px;
+        padding: 12px 20px 24px;
+    }
+
+    .pojmovnik-alphabet-link {
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
+    }
+
+    .pojmovnik-filter-tabs {
+        gap: 6px;
+        padding: 0 20px 20px;
+    }
+
+    .pojmovnik-filter-tab {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+
+    .pojmovnik-listing-content {
+        padding: 0 20px 40px;
+    }
+
+    .pojmovnik-letter-group {
+        padding: 32px 0 0;
+    }
+
+    .pojmovnik-letter-heading {
+        font-size: 32px;
+        margin-bottom: 16px;
+    }
+
+    .pojmovnik-listing-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pojmovnik-listing-card {
+        padding: 28px 20px;
+    }
+
+    .pojmovnik-listing-cta {
+        padding: 60px 20px;
+    }
+
+    .pojmovnik-listing-cta h2 {
+        font-size: 40px;
+    }
+
+    .pojmovnik-listing-cta p {
+        font-size: 16px;
+    }
+
+    .pojmovnik-listing-cta-btn {
+        width: 100%;
+        padding: 16px 32px;
+    }
+}
