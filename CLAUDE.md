@@ -36,7 +36,14 @@ ssh -i ~/.ssh/id_rsa_mstreet mstreetm@prohost15.crohost.net "cd ~/mstreetmusic-n
 - **.htaccess:** trailing slash redirects needed for static subdirs (Passenger catches paths without trailing slash)
 - **PDF update:** keep filename `home-studio-mixing-blueprint.pdf` - mail links depend on it
 
-## Content Rules
-- **Hrvatski jezik** - dijakritici obavezni
-- **hr-spellcheck.py** nakon pisanja sadrzaja
-- 'session', 'mixing', 'mastering' ostaju na engleskom
+## Git & GitHub
+- **Repo:** github.com/sinkovick/mstreetmusic-next (PUBLIC privremeno za remote trigger clone - vratiti na private kad automatizacija blog postova zavrsi)
+- **Local git:** inicijaliziran 2026-04-14, main branch
+- **.env NIKAD u git** - secrets u .env.example kao template
+- **Security**: uklonjeni hardcoded JWT_SECRET/ADMIN_PASSWORD fallbacki (throw error ako env missing)
+- **NAPOMENA**: /api/admin/* endpoints nemaju auth check (middleware stiti samo /admin UI) - known security debt, fix odgoden
+
+## Blog Automation
+- **Remote triggeri** na claude.ai/code/scheduled (Anthropic infra, 3/day plan limit)
+- **Sandbox ogranicenje**: agent ne moze POST na mstreetmusic.hr - priprema JSON payload + curl komandu koju Gazda ujutro kopira lokalno
+- **Source materijali**: data/carrell-transcripts.md + plans/blog-content-plan.md (u repo)
