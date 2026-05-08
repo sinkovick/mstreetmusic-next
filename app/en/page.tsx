@@ -86,12 +86,20 @@ const jsonLd = {
     { "@type": "City", name: "Varaždin" },
     { "@type": "City", name: "Zagreb" },
   ],
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    opens: "09:00",
-    closes: "21:00",
-  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "13:00",
+    },
+  ],
   priceRange: "€€",
   paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "PayPal"],
   currenciesAccepted: "EUR",

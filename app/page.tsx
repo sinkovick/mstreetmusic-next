@@ -86,19 +86,20 @@ const jsonLd = {
     { "@type": "City", name: "Varaždin" },
     { "@type": "City", name: "Zagreb" },
   ],
-  openingHoursSpecification: {
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ],
-    opens: "09:00",
-    closes: "21:00",
-  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "17:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "13:00",
+    },
+  ],
   priceRange: "€€",
   paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "PayPal"],
   currenciesAccepted: "EUR",
@@ -240,7 +241,7 @@ const faqItems = [
   },
   {
     q: 'Gdje se nalazi M Street Music studio?',
-    a: 'M Street Music studio nalazi se u Krapini, Magistratska 21/1, 49000 Krapina. Lako dostupan iz Zagreba (45 minuta autom) i Varaždina (35 minuta). Telefon +385 91 305 0910, email info@mstreetmusic.hr. Radno vrijeme od ponedjeljka do subote, 9:00 do 21:00.',
+    a: 'M Street Music studio nalazi se u Krapini, Magistratska 21/1, 49000 Krapina. Lako dostupan iz Zagreba (45 minuta autom) i Varaždina (35 minuta). Telefon +385 91 305 0910, email info@mstreetmusic.hr. Standardno radno vrijeme: ponedjeljak do petak 9:00 do 17:00, subota 9:00 do 13:00. Termini se mogu prilagoditi ovisno o projektu.',
   },
   {
     q: 'Snimate li bendove iz Zagreba i okolnih gradova?',
