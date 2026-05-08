@@ -47,3 +47,10 @@ ssh -i ~/.ssh/id_rsa_mstreet mstreetm@prohost15.crohost.net "cd ~/mstreetmusic-n
 - **Remote triggeri** na claude.ai/code/scheduled (Anthropic infra, 3/day plan limit)
 - **Sandbox ogranicenje**: agent ne moze POST na mstreetmusic.hr - priprema JSON payload + curl komandu koju Gazda ujutro kopira lokalno
 - **Source materijali**: data/carrell-transcripts.md + plans/blog-content-plan.md (u repo)
+
+## AEO Schema generatori (app/blog/[slug]/page.tsx)
+- **FAQPage Schema** - auto-generira ako post ima `## FAQ` / `## Često postavljana pitanja` / `## Česta pitanja` / `## Najčešća pitanja` sekciju sa H3 pitanja + paragraf odgovora. Min 2 pitanja.
+- **HowTo Schema** - auto-generira ako post ima H2 sa kako/korak/postupak/vodič/priprema/proces keywordom + numbered list ≥4 stavke (poput "## Moj savjet - korak po korak").
+- **Visible "Ažurirano: [datum]"** - prikazuje se kad je `updatedAt > publishedAt + 24h`.
+- **Definition block convention** - prvi paragraf posta (40-60 riječi), direktan odgovor odmah ispod H1, prije postojećeg uvoda. Optimalno za AI snippet extraction.
+- **Homepage FAQ** - DRY refactor: jedan `const faqItems` array u `app/page.tsx` koristi se za render i FAQPage Schema. Dodati pitanje = jedna linija.
