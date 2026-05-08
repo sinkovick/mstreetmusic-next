@@ -217,6 +217,49 @@ const jsonLd = {
   ],
 };
 
+const faqItems = [
+  {
+    q: 'Koliko košta snimanje u studiju?',
+    a: 'Cijena snimanja je 35 EUR po satu. Miksanje počinje od 200 EUR po pjesmi, a mastering košta 50 EUR po pjesmi. Stem mastering je 60 EUR po pjesmi. Konačna cijena ovisi o složenosti projekta.',
+  },
+  {
+    q: 'Kako se pripremiti za snimanje?',
+    a: 'Pripremite se tako da svoje pjesme uvježbate do razine na kojoj ih možete svirati bez zastajkivanja. Donesite nove žice za gitaru, štapiće za bubnjeve i sve tekstove. Preporučujemo da dođete odmorni i hidrirani.',
+  },
+  {
+    q: 'Što je razlika između miksanja i masteringa?',
+    a: 'Miksanje je proces balansiranja i obrade svih individualnih snimljenih traka u jednu koherentnu stereo pjesmu. Mastering je završna obrada gotovog miksa koja optimizira zvuk za streaming platforme i osigurava konzistentnu glasnoću.',
+  },
+  {
+    q: 'Koliko traje snimanje jedne pjesme?',
+    a: 'Snimanje jedne pjesme obično traje 3-6 sati, ovisno o broju instrumenata i složenosti aranžmana. Solo vokal s pratnjom može se snimiti za 2-3 sata, dok puni bend zahtijeva 4-8 sati.',
+  },
+  {
+    q: 'Nudite li online mixing i mastering?',
+    a: 'Da, nudimo online mixing i mastering. Možete nam poslati svoje snimke putem WeTransfer ili Google Drive linka, a mi ćemo vam dostaviti gotov mix ili master u roku od 3-5 radnih dana.',
+  },
+  {
+    q: 'Gdje se nalazi M Street Music studio?',
+    a: 'M Street Music studio nalazi se u Krapini, Magistratska 21/1, 49000 Krapina. Lako dostupan iz Zagreba (45 minuta autom) i Varaždina (35 minuta). Telefon +385 91 305 0910, email info@mstreetmusic.hr. Radno vrijeme od ponedjeljka do subote, 9:00 do 21:00.',
+  },
+  {
+    q: 'Snimate li bendove iz Zagreba i okolnih gradova?',
+    a: 'Da, redovito snimamo bendove iz Zagreba, Varaždina, Hrvatskog zagorja i šire okolice. Mnogi klijenti dolaze iz Zagreba u jednom danu na duže sessione (45 minuta vožnje). Studio raspolaže prostorom za odmor između sessiona.',
+  },
+  {
+    q: 'Mogu li doći u studio bez prethodnog dogovora?',
+    a: 'Snimanje funkcionira na rezervacijski sustav, svi termini se dogovaraju unaprijed kako bi inženjer pripremio session i opremu. Slobodno se javite mailom ili telefonom radi termina i besplatne početne konzultacije o vašem projektu.',
+  },
+  {
+    q: 'Koje žanrove glazbe snimate u studiju?',
+    a: 'M Street Music studio snima sve žanrove glazbe, od akustičnih izvedbi do bendova s punim aranžmanima. Pristup je prilagođen viziji svake pjesme i karakteru autora, neovisno o žanru. Specijalizacija je hibridni analogni mix sa digitalnim editingom. Primjeri raznolikih projekata dostupni su u portfoliju.',
+  },
+  {
+    q: 'Što je hibridni mix u M Street Music studiju?',
+    a: 'Hibridni mix kombinira digitalni editing sa analognim summing-om i procesiranjem. Studio koristi D-Box+ za analog summing, Tegeler Creme za bus kompresiju i SSL Fusion za final processing. Rezultat: digitalna preciznost s analognom toplinom i karakter zvuka.',
+  },
+];
+
 export default function HomePage() {
   return (
     <div className="homepage">
@@ -249,13 +292,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <h2 className="section-title">Često postavljena pitanja</h2>
           <div style={{ marginTop: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {[
-              { q: 'Koliko košta snimanje u studiju?', a: 'Cijena snimanja je 35 EUR po satu. Miksanje počinje od 200 EUR po pjesmi, a mastering košta 50 EUR po pjesmi. Stem mastering je 60 EUR po pjesmi. Konačna cijena ovisi o složenosti projekta.' },
-              { q: 'Kako se pripremiti za snimanje?', a: 'Pripremite se tako da svoje pjesme uvježbate do razine na kojoj ih možete svirati bez zastajkivanja. Donesite nove žice za gitaru, štapiće za bubnjeve i sve tekstove. Preporučujemo da dođete odmorni i hidrirani.' },
-              { q: 'Što je razlika između miksanja i masteringa?', a: 'Miksanje je proces balansiranja i obrade svih individualnih snimljenih traka (vokali, gitare, bubnjevi) u jednu koherentnu stereo pjesmu. Mastering je završna obrada gotovog miksa koja optimizira zvuk za streaming platforme i osigurava konzistentnu glasnoću.' },
-              { q: 'Koliko traje snimanje jedne pjesme?', a: 'Snimanje jedne pjesme obično traje 3-6 sati, ovisno o broju instrumenata i složenosti aranžmana. Solo vokal s pratnjom može se snimiti za 2-3 sata, dok puni bend zahtijeva 4-8 sati.' },
-              { q: 'Nudite li online mixing i mastering?', a: 'Da, nudimo online mixing i mastering. Možete nam poslati svoje snimke putem WeTransfer ili Google Drive linka, a mi ćemo vam dostaviti gotov mix ili master u roku od 3-5 radnih dana.' },
-            ].map((item) => (
+            {faqItems.map((item) => (
               <details key={item.q} style={{ borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' }}>
                 <summary style={{ cursor: 'pointer', fontWeight: 600, fontSize: '17px', padding: '8px 0', color: '#0F172A' }}>{item.q}</summary>
                 <p style={{ marginTop: '12px', lineHeight: '1.7', color: '#475569', fontSize: '15px' }}>{item.a}</p>
@@ -266,15 +303,13 @@ export default function HomePage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              { "@type": "Question", name: "Koliko košta snimanje u studiju?", acceptedAnswer: { "@type": "Answer", text: "Cijena snimanja je 35 EUR po satu. Miksanje počinje od 200 EUR po pjesmi, a mastering košta 50 EUR po pjesmi. Stem mastering je 60 EUR po pjesmi. Konačna cijena ovisi o složenosti projekta." } },
-              { "@type": "Question", name: "Kako se pripremiti za snimanje?", acceptedAnswer: { "@type": "Answer", text: "Pripremite se tako da svoje pjesme uvježbate do razine na kojoj ih možete svirati bez zastajkivanja. Donesite nove žice za gitaru, štapiće za bubnjeve i sve tekstove. Preporučujemo da dođete odmorni i hidrirani." } },
-              { "@type": "Question", name: "Što je razlika između miksanja i masteringa?", acceptedAnswer: { "@type": "Answer", text: "Miksanje je proces balansiranja i obrade svih individualnih snimljenih traka u jednu koherentnu stereo pjesmu. Mastering je završna obrada gotovog miksa koja optimizira zvuk za streaming platforme i osigurava konzistentnu glasnoću." } },
-              { "@type": "Question", name: "Koliko traje snimanje jedne pjesme?", acceptedAnswer: { "@type": "Answer", text: "Snimanje jedne pjesme obično traje 3-6 sati, ovisno o broju instrumenata i složenosti aranžmana. Solo vokal s pratnjom može se snimiti za 2-3 sata, dok puni bend zahtijeva 4-8 sati." } },
-              { "@type": "Question", name: "Nudite li online mixing i mastering?", acceptedAnswer: { "@type": "Answer", text: "Da, nudimo online mixing i mastering. Možete nam poslati svoje snimke putem WeTransfer ili Google Drive linka, a mi ćemo vam dostaviti gotov mix ili master u roku od 3-5 radnih dana." } },
-            ],
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqItems.map((item) => ({
+              '@type': 'Question',
+              name: item.q,
+              acceptedAnswer: { '@type': 'Answer', text: item.a },
+            })),
           }) }}
         />
       </section>

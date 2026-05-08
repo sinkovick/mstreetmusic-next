@@ -63,6 +63,58 @@ const categoryLabels: Record<string, string> = {
   oprema: 'Oprema',
 };
 
+function extractHowToSteps(content: string): Array<{ name: string; text: string }> | null {
+  const sections = content.split(/^## /m);
+  for (const section of sections) {
+    const firstLineMatch = section.match(/^([^\n]+)/);
+    if (!firstLineMatch) continue;
+    const title = firstLineMatch[1].trim();
+    if (!/(kako|korak|postupak|vodi[čc]|priprema|proces)/i.test(title)) continue;
+
+    const numberedLines = section.match(/^\d+\.\s+.+$/gm);
+    if (!numberedLines || numberedLines.length < 4) continue;
+
+    return numberedLines.map((line) => {
+      const text = line.replace(/^\d+\.\s+/, '').trim();
+      const nameMatch = text.match(/^([^.!?(]+)/);
+      const rawName = nameMatch ? nameMatch[1].trim() : text;
+      const name = rawName.length > 70 ? rawName.slice(0, 67).trim() + '...' : rawName;
+      return { name, text };
+    });
+  }
+  return null;
+}
+
+function extractFAQs(content: string): Array<{ question: string; answer: string }> {
+  const sections = content.split(/^## /m);
+  const faqSection = sections.find((s) =>
+    /^(FAQ|Često postavljana pitanja|Česta pitanja|Najčešća pitanja)/i.test(s.trimStart())
+  );
+  if (!faqSection) return [];
+
+  const lines = faqSection.split('\n');
+  const faqs: Array<{ question: string; answer: string }> = [];
+  let currentQuestion: string | null = null;
+  let currentAnswer: string[] = [];
+
+  for (const rawLine of lines) {
+    const line = rawLine;
+    if (line.startsWith('### ')) {
+      if (currentQuestion && currentAnswer.length) {
+        faqs.push({ question: currentQuestion, answer: currentAnswer.join(' ').trim() });
+      }
+      currentQuestion = line.slice(4).trim();
+      currentAnswer = [];
+    } else if (currentQuestion && line.trim()) {
+      currentAnswer.push(line.trim());
+    }
+  }
+  if (currentQuestion && currentAnswer.length) {
+    faqs.push({ question: currentQuestion, answer: currentAnswer.join(' ').trim() });
+  }
+  return faqs;
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const post = await getPost(params.slug);
 
@@ -129,6 +181,41 @@ export default async function BlogPostPage({ params }: Props) {
     ],
   };
 
+  const faqs = extractFAQs(post.content);
+  const faqJsonLd = faqs.length >= 2
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      }
+    : null;
+
+  const howToSteps = extractHowToSteps(post.content);
+  const howToJsonLd = howToSteps
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: post.title,
+        description: post.excerpt,
+        image: post.coverImage || 'https://mstreetmusic.hr/studio.jpg',
+        totalTime: `PT${post.readTime}M`,
+        step: howToSteps.map((s, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
+      }
+    : null;
+
+  const wasUpdated =
+    post.publishedAt &&
+    post.updatedAt.getTime() - post.publishedAt.getTime() > 24 * 60 * 60 * 1000;
+
   return (
     <div className="blog-page">
       <script
@@ -139,6 +226,18 @@ export default async function BlogPostPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+      {howToJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        />
+      )}
 
       <ScrollReveal />
       <Navigation locale="hr" />
@@ -174,6 +273,16 @@ export default async function BlogPostPage({ params }: Props) {
               {post.publishedAt && (
                 <span className="blog-post-date">
                   {new Date(post.publishedAt).toLocaleDateString('hr-HR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </span>
+              )}
+              {wasUpdated && (
+                <span className="blog-post-updated">
+                  Ažurirano:{' '}
+                  {new Date(post.updatedAt).toLocaleDateString('hr-HR', {
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric',
