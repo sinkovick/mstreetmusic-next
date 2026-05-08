@@ -5,7 +5,8 @@ import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 
 interface GalleryImage {
-  src: string;
+  thumb: string;
+  full: string;
   alt: string;
   width: number;
   height: number;
@@ -19,7 +20,8 @@ function buildImages(localeAlt: (n: number) => string): GalleryImage[] {
     const num = String(n).padStart(2, '0');
     const isPortrait = PORTRAIT_INDICES.has(n);
     return {
-      src: `/images/gallery/studio-${num}.jpg`,
+      thumb: `/images/gallery/studio-${num}-thumb.webp`,
+      full: `/images/gallery/studio-${num}.webp`,
       alt: localeAlt(n),
       width: 1920,
       height: isPortrait ? 2880 : 1280,
@@ -40,34 +42,11 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const images = galleryImages[locale];
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
+  const [emblaRef] = useEmblaCarousel({
     dragFree: true,
-    containScroll: 'trimSnaps',
     align: 'start',
+    skipSnaps: true,
   });
-
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const update = () => {
-      setCanScrollPrev(emblaApi.canScrollPrev());
-      setCanScrollNext(emblaApi.canScrollNext());
-    };
-    update();
-    emblaApi.on('select', update);
-    emblaApi.on('reInit', update);
-    emblaApi.on('scroll', update);
-    return () => {
-      emblaApi.off('select', update);
-      emblaApi.off('reInit', update);
-      emblaApi.off('scroll', update);
-    };
-  }, [emblaApi]);
-
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const goNext = useCallback(() => {
@@ -96,50 +75,28 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
 
   return (
     <>
-      <div className="studio-gallery-wrap">
-        <div className="studio-gallery-viewport" ref={emblaRef}>
-          <div className="studio-gallery-track">
-            {images.map((img, i) => (
-              <button
-                key={img.src}
-                type="button"
-                className="studio-gallery-slide"
-                onClick={() => setLightboxIndex(i)}
-                aria-label={img.alt}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes="(max-width: 768px) 70vw, 480px"
-                  style={{ objectFit: 'cover', height: '100%', width: 'auto', display: 'block' }}
-                  draggable={false}
-                />
-              </button>
-            ))}
-          </div>
+      <div className="studio-gallery-viewport" ref={emblaRef}>
+        <div className="studio-gallery-track">
+          {images.map((img, i) => (
+            <button
+              key={img.thumb}
+              type="button"
+              className="studio-gallery-slide"
+              onClick={() => setLightboxIndex(i)}
+              aria-label={img.alt}
+            >
+              <Image
+                src={img.thumb}
+                alt={img.alt}
+                width={img.width}
+                height={img.height}
+                sizes="(max-width: 768px) 70vw, 480px"
+                style={{ objectFit: 'cover', height: '100%', width: 'auto', display: 'block' }}
+                draggable={false}
+              />
+            </button>
+          ))}
         </div>
-        <button
-          className="studio-gallery-arrow studio-gallery-arrow-prev"
-          onClick={scrollPrev}
-          disabled={!canScrollPrev}
-          aria-label={locale === 'hr' ? 'Prethodna' : 'Previous'}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button
-          className="studio-gallery-arrow studio-gallery-arrow-next"
-          onClick={scrollNext}
-          disabled={!canScrollNext}
-          aria-label={locale === 'hr' ? 'Sljedeća' : 'Next'}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
       </div>
 
       {currentImage && (
@@ -156,7 +113,7 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
           </button>
           <div className="lightbox-image-wrap" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={currentImage.src}
+              src={currentImage.full}
               alt={currentImage.alt}
               width={currentImage.width}
               height={currentImage.height}
