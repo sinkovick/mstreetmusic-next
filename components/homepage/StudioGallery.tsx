@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 
 interface GalleryImage {
   thumb: string;
@@ -42,11 +43,14 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const images = galleryImages[locale];
 
-  const [emblaRef] = useEmblaCarousel({
-    dragFree: true,
-    align: 'start',
-    skipSnaps: true,
-  });
+  const [emblaRef] = useEmblaCarousel(
+    {
+      dragFree: true,
+      align: 'start',
+      skipSnaps: true,
+    },
+    [WheelGesturesPlugin({ forceWheelAxis: 'x' })]
+  );
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const goNext = useCallback(() => {
