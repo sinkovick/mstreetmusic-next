@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
 
 interface GalleryImage {
   src: string;
@@ -10,31 +11,25 @@ interface GalleryImage {
   height: number;
 }
 
+const PORTRAIT_INDICES = new Set([1, 5, 6, 8, 9, 10, 12, 14, 22, 23, 27, 29]);
+
+function buildImages(localeAlt: (n: number) => string): GalleryImage[] {
+  return Array.from({ length: 29 }, (_, i) => {
+    const n = i + 1;
+    const num = String(n).padStart(2, '0');
+    const isPortrait = PORTRAIT_INDICES.has(n);
+    return {
+      src: `/images/gallery/studio-${num}.jpg`,
+      alt: localeAlt(n),
+      width: 1920,
+      height: isPortrait ? 2880 : 1280,
+    };
+  });
+}
+
 const galleryImages: { hr: GalleryImage[]; en: GalleryImage[] } = {
-  hr: [
-    { src: '/images/gallery/control-room.jpg', alt: 'Control room - radna stanica s monitorom i analognom opremom', width: 1600, height: 1066 },
-    { src: '/images/gallery/mikrofoni.jpg', alt: 'Kolekcija profesionalnih mikrofona - Neumann, Lewitt, UA Sphere', width: 1600, height: 2400 },
-    { src: '/images/gallery/control-room-front.jpg', alt: 'Control room frontalni pogled - zvučnici, monitor i oprema', width: 1600, height: 1066 },
-    { src: '/images/gallery/live-room.jpg', alt: 'Live room za snimanje - mikrofon i akustički paneli', width: 1600, height: 2400 },
-    { src: '/images/gallery/ssl-fusion-detalj.jpg', alt: 'SSL Fusion analogni procesor - detalj šarenih knobova', width: 1600, height: 1066 },
-    { src: '/images/gallery/gitare.jpg', alt: 'Kolekcija gitara na stalku - električne i akustična', width: 1600, height: 2399 },
-    { src: '/images/gallery/mastering-rack.jpg', alt: 'Mastering rack - analogna oprema i Mac Studio', width: 1600, height: 1066 },
-    { src: '/images/gallery/lounge.jpg', alt: 'Lounge zona - plavi kauč za opuštanje', width: 1600, height: 1066 },
-    { src: '/images/gallery/pedalboard.jpg', alt: 'Pedalboard s efektima - Kemper, OCD, Boss', width: 1600, height: 2400 },
-    { src: '/images/gallery/klavijatura.jpg', alt: 'Klavijatura u studiju - crno-bijeli moody shot', width: 1600, height: 2400 },
-  ],
-  en: [
-    { src: '/images/gallery/control-room.jpg', alt: 'Control room - workstation with monitor and analog gear', width: 1600, height: 1066 },
-    { src: '/images/gallery/mikrofoni.jpg', alt: 'Professional microphone collection - Neumann, Lewitt, UA Sphere', width: 1600, height: 2400 },
-    { src: '/images/gallery/control-room-front.jpg', alt: 'Control room front view - speakers, monitor and gear', width: 1600, height: 1066 },
-    { src: '/images/gallery/live-room.jpg', alt: 'Live recording room - microphone and acoustic panels', width: 1600, height: 2400 },
-    { src: '/images/gallery/ssl-fusion-detalj.jpg', alt: 'SSL Fusion analog processor - colorful knobs detail', width: 1600, height: 1066 },
-    { src: '/images/gallery/gitare.jpg', alt: 'Guitar collection on stand - electric and acoustic', width: 1600, height: 2399 },
-    { src: '/images/gallery/mastering-rack.jpg', alt: 'Mastering rack - analog gear and Mac Studio', width: 1600, height: 1066 },
-    { src: '/images/gallery/lounge.jpg', alt: 'Lounge area - blue couch for relaxing', width: 1600, height: 1066 },
-    { src: '/images/gallery/pedalboard.jpg', alt: 'Effects pedalboard - Kemper, OCD, Boss', width: 1600, height: 2400 },
-    { src: '/images/gallery/klavijatura.jpg', alt: 'Studio keyboard - black and white moody shot', width: 1600, height: 2400 },
-  ],
+  hr: buildImages((n) => `Tonski studio M Street Music u Krapini - fotografija prostora i opreme (${n}/29)`),
+  en: buildImages((n) => `M Street Music recording studio in Krapina - studio space and gear (photo ${n}/29)`),
 };
 
 interface StudioGalleryProps {
@@ -45,28 +40,52 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const images = galleryImages[locale];
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+    containScroll: 'trimSnaps',
+    align: 'start',
+  });
 
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const update = () => {
+      setCanScrollPrev(emblaApi.canScrollPrev());
+      setCanScrollNext(emblaApi.canScrollNext());
+    };
+    update();
+    emblaApi.on('select', update);
+    emblaApi.on('reInit', update);
+    emblaApi.on('scroll', update);
+    return () => {
+      emblaApi.off('select', update);
+      emblaApi.off('reInit', update);
+      emblaApi.off('scroll', update);
+    };
+  }, [emblaApi]);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const goNext = useCallback(() => {
     setLightboxIndex((prev) => (prev !== null ? (prev + 1) % images.length : null));
   }, [images.length]);
-
   const goPrev = useCallback(() => {
     setLightboxIndex((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : null));
   }, [images.length]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
-
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowRight') goNext();
       if (e.key === 'ArrowLeft') goPrev();
     };
-
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKey);
-
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKey);
@@ -77,24 +96,50 @@ export default function StudioGallery({ locale = 'hr' }: StudioGalleryProps) {
 
   return (
     <>
-      <div className="studio-gallery">
-        {images.map((img, i) => (
-          <button
-            key={img.src}
-            className="studio-gallery-thumb"
-            onClick={() => setLightboxIndex(i)}
-            aria-label={img.alt}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={400}
-              height={400}
-              sizes="(max-width: 768px) 33vw, 20vw"
-              style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-            />
-          </button>
-        ))}
+      <div className="studio-gallery-wrap">
+        <div className="studio-gallery-viewport" ref={emblaRef}>
+          <div className="studio-gallery-track">
+            {images.map((img, i) => (
+              <button
+                key={img.src}
+                type="button"
+                className="studio-gallery-slide"
+                onClick={() => setLightboxIndex(i)}
+                aria-label={img.alt}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={img.width}
+                  height={img.height}
+                  sizes="(max-width: 768px) 70vw, 480px"
+                  style={{ objectFit: 'cover', height: '100%', width: 'auto', display: 'block' }}
+                  draggable={false}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+        <button
+          className="studio-gallery-arrow studio-gallery-arrow-prev"
+          onClick={scrollPrev}
+          disabled={!canScrollPrev}
+          aria-label={locale === 'hr' ? 'Prethodna' : 'Previous'}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <button
+          className="studio-gallery-arrow studio-gallery-arrow-next"
+          onClick={scrollNext}
+          disabled={!canScrollNext}
+          aria-label={locale === 'hr' ? 'Sljedeća' : 'Next'}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
       </div>
 
       {currentImage && (
